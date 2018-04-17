@@ -4,7 +4,11 @@ Imports SwinGameSDK
 ''' The DeploymentController controls the players actions
 ''' during the deployment phase.
 ''' BUG - Ships not being placed where one would expect
-''' BUG - button being clicked is not consistently ending deployment.
+''' BUG - play button being clicked is not consistently ending deployment.
+''' BUG - arrow button not consistently changing direction
+'' 'BUG - random button not consistently randomizing
+
+
 ''' </summary>
 Module DeploymentController
     Private Const SHIPS_TOP As Integer = 98
@@ -68,11 +72,11 @@ Module DeploymentController
                 EndDeployment() 
             'If Up button clicked change direction
             ElseIf IsMouseInRectangle(UP_DOWN_BUTTON_LEFT, TOP_BUTTONS_TOP, DIR_BUTTONS_WIDTH, TOP_BUTTONS_HEIGHT) Then
-                _currentDirection = Direction.LeftRight 'BUG - button not consistently changing direction
+                _currentDirection = Direction.LeftRight 
             ElseIf IsMouseInRectangle(LEFT_RIGHT_BUTTON_LEFT, TOP_BUTTONS_TOP, DIR_BUTTONS_WIDTH, TOP_BUTTONS_HEIGHT) Then
-                _currentDirection = Direction.LeftRight 'BUG - button not consistently changing direction
+                _currentDirection = Direction.LeftRight 
             ElseIf IsMouseInRectangle(RANDOM_BUTTON_LEFT, TOP_BUTTONS_TOP, RANDOM_BUTTON_WIDTH, TOP_BUTTONS_HEIGHT) Then
-                HumanPlayer.RandomizeDeployment() ' BUG - button not consistently randomizing
+                HumanPlayer.RandomizeDeployment() 
             End If
         End If
     End Sub
