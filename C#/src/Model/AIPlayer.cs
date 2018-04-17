@@ -19,7 +19,7 @@ public abstract class AIPlayer {
         // '' </summary>
         // '' <value>The row of the shot</value>
         // '' <returns>The row of the shot</returns>
-        public int Row {
+        public final int Row {
             get {
                 return _Row;
             }
@@ -28,7 +28,7 @@ public abstract class AIPlayer {
             }
         }
         
-        public int Column {
+        public final int Column {
             get {
                 return _Column;
             }
@@ -41,12 +41,21 @@ public abstract class AIPlayer {
             _Column = column;
             _Row = row;
         }
-    
+        
+        private Location this;
+        
+        private Location other;
     }
-
     
-    Public(BattleShipsGame game) : base(game) {
-
+    private Location this;
+    
+    private Location other;
+}
+Endclass Public {
+    
+    Public(BattleShipsGame game) {
+        super(game);
+        
     }
     
     // '' <summary>
@@ -64,7 +73,7 @@ public abstract class AIPlayer {
         // '' <param name="col">the column shot</param>
     }
     
-     void ProcessShot(int row, int col, AttackResult result) {
+    final void ProcessShot(int row, int col, AttackResult result) {
         // '' <summary>
         // '' The AI takes its attacks until its go is over.
         // '' </summary>
@@ -94,7 +103,7 @@ public abstract class AIPlayer {
     // '' <summary>
     // '' Wait a short period to simulate the think time
     // '' </summary>
-    private void Delay() {
+    private final void Delay() {
         int i;
         for (i = 0; (i <= 150); i++) {
             // Dont delay if window is closed

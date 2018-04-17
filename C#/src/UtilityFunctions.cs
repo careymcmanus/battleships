@@ -233,14 +233,14 @@ class UtilityFunctions {
         
     }
     
-    private static string _message;
+    private string _message;
     
     // '' <summary>
     // '' The message to display
     // '' </summary>
     // '' <value>The message to display</value>
     // '' <returns>The message to display</returns>
-    public static string Message {
+    public string Message {
         get {
             return _message;
         }

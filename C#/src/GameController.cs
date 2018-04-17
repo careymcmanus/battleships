@@ -28,7 +28,7 @@ public class GameController {
         }
     }
     
-    public static Player HumanPlayer {
+    public Player HumanPlayer {
         get {
             return _human;
         }

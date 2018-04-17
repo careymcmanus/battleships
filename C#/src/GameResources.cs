@@ -235,7 +235,7 @@ public class GameResources {
     
     private static void FreeImages() {
         Bitmap obj;
-        foreach obj in _Images.Values {
+        foreach (obj in _Images.Values) {
             SwinGame.FreeBitmap(obj);
         }
         
@@ -243,7 +243,7 @@ public class GameResources {
     
     private static void FreeSounds() {
         SoundEffect obj;
-        foreach obj in _Sounds.Values {
+        foreach (obj in _Sounds.Values) {
             Audio.FreeSoundEffect(obj);
         }
         

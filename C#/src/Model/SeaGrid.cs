@@ -47,7 +47,8 @@ public class SeaGrid : ISeaGrid {
     public TileView this[int x, int y] {
     }
 }
-
+Endclass Unknown {
+}
 
     
     // '' <summary>
@@ -88,7 +89,7 @@ public class SeaGrid : ISeaGrid {
     // '' <param name="col">the column selected</param>
     // '' <param name="ship">the ship selected</param>
     // '' <param name="direction">the direction the ship is going</param>
-    public static void MoveShip(int row, int col, ShipName ship, Direction direction) {
+    public void MoveShip(int row, int col, ShipName ship, Direction direction) {
         Ship newShip = _Ships[ship];
         newShip.Remove();
         AddShip(row, col, direction, newShip);
