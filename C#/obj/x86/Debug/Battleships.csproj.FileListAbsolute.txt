@@ -1,2 +1,0 @@
-D:\Documents\ToolsPractices\battleships\C#\obj\x86\Debug\Battleships.csprojResolveAssemblyReference.cache
-D:\Documents\ToolsPractices\battleships\C#\obj\x86\Debug\Battleships.csproj.CoreCompileInputs.cache
