@@ -40,14 +40,14 @@ public class AIMediumPlayer : AIPlayer {
                     || ((column < 0) 
                     || ((row >= EnemyGrid.Height) 
                     || ((column >= EnemyGrid.Width) 
-                    || (EnemyGrid.Item[row, column] != TileView.Sea))))); 
+                    || (EnemyGrid[row, column] != TileView.Sea))))); 
         ) {
             switch (_CurrentState) {
                 case AIStates.Searching:
-                    this.SearchCoords(row, column);
+                    this.SearchCoords(ref row,ref column);
                     break;
                 case AIStates.TargetingShip:
-                    this.TargetCoords(row, column);
+                    this.TargetCoords(ref row,ref column);
                     break;
                 default:
                     throw new ApplicationException("AI has gone in an imvalid state");
@@ -115,7 +115,7 @@ public class AIMediumPlayer : AIPlayer {
                     && ((column >= 0) 
                     && ((row < EnemyGrid.Height) 
                     && ((column < EnemyGrid.Width) 
-                    && (EnemyGrid.Item[row, column] == TileView.Sea)))))) {
+                    && (EnemyGrid[row, column] == TileView.Sea)))))) {
             _Targets.Push(new Location(row, column));
         }
         

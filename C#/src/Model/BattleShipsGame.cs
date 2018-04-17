@@ -1,3 +1,4 @@
+using System;
 // '' <summary>
 // '' The BattleShipsGame controls a big part of the game. It will add the two players
 // '' to the game and make sure that both players ships are all deployed before starting the game.
@@ -15,7 +16,7 @@ public class BattleShipsGame {
     public delegate void AttackCompletedHandler(object sender, AttackResult result);
     
     public event AttackCompletedHandler AttackCompleted;
-    
+    private Player[] _players = new Player[3];
     private int _playerIndex = 0;
     
     // '' <summary>
@@ -26,16 +27,16 @@ public class BattleShipsGame {
     // '' <remarks>This value will switch between the two players as they have their attacks</remarks>
     public Player Player {
         get {
-            return _players(_playerIndex);
+            return _players[_playerIndex];
         }
     }
     
     public void AddDeployedPlayer(Player p) {
-        if ((_players(0) == null)) {
-            _players(0) = p;
+        if ((_players[0] == null)) {
+            _players[0] = p;
         }
-        else if ((_players(1) == null)) {
-            _players(1) = p;
+        else if ((_players[1] == null)) {
+            _players[1] = p;
             this.CompleteDeployment();
         }
         else {
@@ -49,8 +50,8 @@ public class BattleShipsGame {
     // '' to examine the details visable on the other's sea grid.
     // '' </summary>
     private void CompleteDeployment() {
-        _players(0).Enemy = new SeaGridAdapter(_players(1).PlayerGrid);
-        _players(1).Enemy = new SeaGridAdapter(_players(0).PlayerGrid);
+        _players[0].Enemy = new SeaGridAdapter(_players[1].PlayerGrid);
+        _players[1].Enemy = new SeaGridAdapter(_players[0].PlayerGrid);
     }
     
     // '' <summary>
@@ -66,7 +67,7 @@ public class BattleShipsGame {
                     % 2);
         newAttack = Player.Shoot(row, col);
         // Will exit the game when all players ships are destroyed
-        if (_players(otherPlayer).IsDestroyed) {
+        if (_players[otherPlayer].IsDestroyed) {
             newAttack = new AttackResult(ResultOfAttack.GameOver, newAttack.Ship, newAttack.Text, row, col);
         }
         

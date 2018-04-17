@@ -125,24 +125,18 @@ class UtilityFunctions {
     // '' <param name="cellGap">the gap between the cells</param>
     private static void DrawCustomField(ISeaGrid grid, Player thePlayer, bool small, bool showShips, int left, int top, int width, int height, int cellWidth, int cellHeight, int cellGap) {
         // SwinGame.FillRectangle(Color.Blue, left, top, width, height)
-        int rowTop;
-        int colLeft;
+        int rowTop = 0;
+        int colLeft = 0;
         // Draw the grid
         for (int row = 0; (row <= 9); row++) {
-            rowTop = (top 
-                        + ((cellGap + cellHeight) 
-                        * row));
+            rowTop = top + (cellGap + cellHeight) * colLeft;
             for (int col = 0; (col <= 9); col++) {
-                colLeft = (left 
-                            + ((cellGap + cellWidth) 
-                            * col));
-                Color fillColor = default(Color);
-                bool draw;
+                colLeft = left + (cellGap + cellWidth) * col;
+                Color fillColor = SMALL_HIT;
+                bool draw= false;
                 draw = true;
                 switch (grid[row, col]) {
-                    case TileView.Ship:
-                        draw = false;
-                        break;
+                    
                     case TileView.Miss:
                         if (small) {
                             fillColor = SMALL_MISS;
@@ -162,6 +156,7 @@ class UtilityFunctions {
                         
                         break;
                     case TileView.Sea:
+                        break;
 
                     case TileView.Ship:
                         if (small) {
@@ -194,19 +189,11 @@ class UtilityFunctions {
         string shipName;
         // Draw the ships
         foreach (Ship s in thePlayer) {
-            if (((s == null) 
-                        || !s.IsDeployed)) {
-                // TODO: Continue For... Warning!!! not translated
-            }
-            
-            rowTop = (top 
-                        + (((cellGap + cellHeight) 
-                        * s.Row) 
-                        + SHIP_GAP));
-            colLeft = (left 
-                        + (((cellGap + cellWidth) 
-                        * s.Column) 
-                        + SHIP_GAP));
+            if (s == null || !s.IsDeployed)
+                continue;
+
+            rowTop = top + (cellGap + cellHeight) * s.Row + SHIP_GAP;
+            colLeft = left + (cellGap + cellWidth) * s.Column + SHIP_GAP;
             if ((s.Direction == Direction.LeftRight)) {
                 shipName = ("ShipLR" + s.Size);
                 shipHeight = (cellHeight 
@@ -340,8 +327,8 @@ class UtilityFunctions {
         int i;
         for (i = 1; (i 
                     <= (ANIMATION_CELLS * FRAMES_PER_CELL)); i++) {
-            UtilityFunctions.UpdateAnimations();
-            UtilityFunctions.DrawScreen();
+            UpdateAnimations();
+            GameController.DrawScreen();
         }
         
     }
