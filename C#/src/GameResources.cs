@@ -1,52 +1,52 @@
 using SwinGameSDK;
+using System;
 using System.Collections.Generic;
 public class GameResources {
     
     private static void LoadFonts() {
-        GameResources.NewFont("ArialLarge", "arial.ttf", 80);
-        GameResources.NewFont("Courier", "cour.ttf", 14);
-        GameResources.NewFont("CourierSmall", "cour.ttf", 8);
-        GameResources.NewFont("Menu", "ffaccess.ttf", 8);
+        NewFont("ArialLarge", "arial.ttf", 80);
+        NewFont("Courier", "cour.ttf", 14);
+        NewFont("CourierSmall", "cour.ttf", 8);
+        NewFont("Menu", "ffaccess.ttf", 8);
     }
     
     private static void LoadImages() {
         // Backgrounds
-        GameResources.NewImage("Menu", "main_page.jpg");
-        GameResources.NewImage("Discovery", "discover.jpg");
-        GameResources.NewImage("Deploy", "deploy.jpg");
+        NewImage("Menu", "main_page.jpg");
+        NewImage("Discovery", "discover.jpg");
+        NewImage("Deploy", "deploy.jpg");
         // Deployment
-        GameResources.NewImage("LeftRightButton", "deploy_dir_button_horiz.png");
-        GameResources.NewImage("UpDownButton", "deploy_dir_button_vert.png");
-        GameResources.NewImage("SelectedShip", "deploy_button_hl.png");
-        GameResources.NewImage("PlayButton", "deploy_play_button.png");
-        GameResources.NewImage("RandomButton", "deploy_randomize_button.png");
+        NewImage("LeftRightButton", "deploy_dir_button_horiz.png");
+        NewImage("UpDownButton", "deploy_dir_button_vert.png");
+        NewImage("SelectedShip", "deploy_button_hl.png");
+        NewImage("PlayButton", "deploy_play_button.png");
+        NewImage("RandomButton", "deploy_randomize_button.png");
         // Ships
         int i;
         for (i = 1; (i <= 5); i++) {
-            GameResources.NewImage(("ShipLR" + i), ("ship_deploy_horiz_" 
+            NewImage(("ShipLR" + i), ("ship_deploy_horiz_" 
                             + (i + ".png")));
-            GameResources.NewImage(("ShipUD" + i), ("ship_deploy_vert_" 
+            NewImage(("ShipUD" + i), ("ship_deploy_vert_" 
                             + (i + ".png")));
         }
         
         // Explosions
-        GameResources.NewImage("Explosion", "explosion.png");
-        GameResources.NewImage("Splash", "splash.png");
+        NewImage("Explosion", "explosion.png");
+        NewImage("Splash", "splash.png");
     }
     
     private static void LoadSounds() {
-        GameResources.NewSound("Error", "error.wav");
-        GameResources.NewSound("Hit", "hit.wav");
-        GameResources.NewSound("Sink", "sink.wav");
-        GameResources.NewSound("Siren", "siren.wav");
-        GameResources.NewSound("Miss", "watershot.wav");
-        GameResources.NewSound("Winner", "winner.wav");
-        GameResources.NewSound("Lose", "lose.wav");
+        NewSound("Error", "error.wav");
+        NewSound("Hit", "hit.wav");
+        NewSound("Sink", "sink.wav");
+        NewSound("Miss", "watershot.wav");
+        NewSound("Winner", "winner.wav");
+        NewSound("Lose", "lose.wav");
     }
     
-    private static void LoadMusic()
+    private static void LoadMusics()
     {
-        GameResources.NewMusic("Background", "horrordrone.mp3");
+        NewMusic("Background", "horrordrone.mp3");
     }
     
     // '' <summary>
@@ -117,23 +117,23 @@ public class GameResources {
         width = SwinGame.ScreenWidth();
         height = SwinGame.ScreenHeight();
         SwinGame.ChangeScreenSize(800, 600);
-        GameResources.ShowLoadingScreen();
-        GameResources.ShowMessage("Loading fonts...", 0);
-        GameResources.LoadFonts();
+        ShowLoadingScreen();
+        ShowMessage("Loading fonts...", 0);
+        LoadFonts();
         SwinGame.Delay(100);
-        GameResources.ShowMessage("Loading images...", 1);
-        GameResources.LoadImages();
+        ShowMessage("Loading images...", 1);
+        LoadImages();
         SwinGame.Delay(100);
-        GameResources.ShowMessage("Loading sounds...", 2);
-        GameResources.LoadSounds();
+        ShowMessage("Loading sounds...", 2);
+        LoadSounds();
         SwinGame.Delay(100);
-        GameResources.ShowMessage("Loading music...", 3);
-        GameResources.LoadMusic();
+        ShowMessage("Loading music...", 3);
+        LoadMusics();
         SwinGame.Delay(100);
         SwinGame.Delay(100);
-        GameResources.ShowMessage("Game loaded...", 5);
+        ShowMessage("Game loaded...", 5);
         SwinGame.Delay(100);
-        GameResources.EndLoadingScreen(width, height);
+        EndLoadingScreen(width, height);
     }
     
     private static void ShowLoadingScreen() {
@@ -146,7 +146,7 @@ public class GameResources {
         _StartSound = Audio.LoadSoundEffect(SwinGame.PathToResource("SwinGameStart.ogg", ResourceKind.SoundResource));
         _LoaderFull = SwinGame.LoadBitmap(SwinGame.PathToResource("loader_full.png", ResourceKind.BitmapResource));
         _LoaderEmpty = SwinGame.LoadBitmap(SwinGame.PathToResource("loader_empty.png", ResourceKind.BitmapResource));
-        GameResources.PlaySwinGameIntro();
+        PlaySwinGameIntro();
     }
     
     private static void PlaySwinGameIntro() {
@@ -218,7 +218,7 @@ public class GameResources {
     }
     
     private static void NewTransparentColourImage(string imageName, string fileName, Color transColor) {
-        GameResources.NewTransparentColorImage(imageName, fileName, transColor);
+        NewTransparentColorImage(imageName, fileName, transColor);
     }
     
     private static void NewSound(string soundName, string filename) {
@@ -256,16 +256,18 @@ public class GameResources {
     private static void FreeMusic() {
       
         foreach (Music obj in _Music.Values) {
+
             Audio.FreeMusic(obj);
+                
         }
         
     }
     
     public static void FreeResources() {
-        GameResources.FreeFonts();
-        GameResources.FreeImages();
-        GameResources.FreeMusic();
-        GameResources.FreeSounds();
+        FreeFonts();
+        FreeImages();
+        FreeMusic();
+        FreeSounds();
         SwinGame.ProcessEvents();
     }
 }
