@@ -31,7 +31,7 @@ public class Ship {
     // '' <returns>The type of ship</returns>
     public string Name {
         get {
-            if ((_shipName == ShipName.AircraftCarrier)) {
+            if (_shipName == ShipName.AircraftCarrier) {
                 return "Aircraft Carrier";
             }
             
@@ -91,7 +91,6 @@ public class Ship {
         foreach (Tile tile in _tiles) {
             tile.ClearShip();
         }
-        
         _tiles.Clear();
     }
     
@@ -115,7 +114,8 @@ public class Ship {
         }
     }
     
-    internal void Deployed(Direction direction, int row, int col) {
+    internal void Deployed(Direction direction, int row, int col)
+    {
         _row = row;
         _col = col;
         _direction = direction;

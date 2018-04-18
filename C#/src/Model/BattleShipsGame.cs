@@ -32,10 +32,10 @@ public class BattleShipsGame {
     }
     
     public void AddDeployedPlayer(Player p) {
-        if ((_players[0] == null)) {
+        if (_players[0] == null) {
             _players[0] = p;
         }
-        else if ((_players[1] == null)) {
+        else if (_players[1] == null) {
             _players[1] = p;
             this.CompleteDeployment();
         }
@@ -61,19 +61,21 @@ public class BattleShipsGame {
     // '' <param name="row">the row fired upon</param>
     // '' <param name="col">the column fired upon</param>
     // '' <returns>The result of the attack</returns>
-    public AttackResult Shoot(int row, int col) {
-        AttackResult newAttack;
-        int otherPlayer = ((_playerIndex + 1) 
-                    % 2);
+    public AttackResult Shoot(int row, int col)
+    {
+        AttackResult newAttack = default(AttackResult);
+        int otherPlayer = ((_playerIndex + 1) % 2);
         newAttack = Player.Shoot(row, col);
         // Will exit the game when all players ships are destroyed
-        if (_players[otherPlayer].IsDestroyed) {
+        if (_players[otherPlayer].IsDestroyed)
+        {
             newAttack = new AttackResult(ResultOfAttack.GameOver, newAttack.Ship, newAttack.Text, row, col);
         }
         
         AttackCompleted(this, newAttack);
         // change player if the last hit was a miss
-        if ((newAttack.Value == ResultOfAttack.Miss)) {
+        if ((newAttack.Value == ResultOfAttack.Miss))
+        {
             _playerIndex = otherPlayer;
         }
         

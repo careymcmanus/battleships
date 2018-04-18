@@ -87,16 +87,14 @@ public class SeaGrid : ISeaGrid
     public SeaGrid(Dictionary<ShipName, Ship> ships)
     {
         _GameTiles = new Tile[Width, Height];
-        //fill array with empty Tiles
-        int i = 0;
-        for (i = 0; i <= Width - 1; i++)
+        //fill array with empty 
+        for (int i = 0; i <= Width - 1; i++)
         {
             for (int j = 0; j <= Height - 1; j++)
             {
                 _GameTiles[i, j] = new Tile(i, j, null);
             }
         }
-
         _Ships = ships;
     }
 
@@ -136,15 +134,14 @@ public class SeaGrid : ISeaGrid
                 dRow = 0;
                 dCol = 1;
             }
-            else
+            else if (direction == Direction.UpDown)
             {
                 dRow = 1;
                 dCol = 0;
             }
 
             //place ship's tiles in array and into ship object
-            int i = 0;
-            for (i = 0; i <= size - 1; i++)
+            for (int i = 0; i <= size - 1; i++)
             {
                 if (currentRow < 0 | currentRow >= Width | currentCol < 0 | currentCol >= Height)
                 {

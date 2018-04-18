@@ -32,8 +32,7 @@ class EndingGameController {
     // will result in it reading in the highsSwinGame.
     // </summary>
     public static void HandleEndOfGameInput() {
-        if ((SwinGame.MouseClicked(MouseButton.LeftButton) 
-                    || (SwinGame.KeyTyped(KeyCode.ReturnKey) || SwinGame.KeyTyped(KeyCode.EscapeKey)))) {
+        if ((SwinGame.MouseClicked(MouseButton.LeftButton) || (SwinGame.KeyTyped(KeyCode.ReturnKey) || SwinGame.KeyTyped(KeyCode.EscapeKey)))) {
             HighScoreController.ReadHighScore(GameController.HumanPlayer.Score);
             GameController.EndCurrentState();
         }

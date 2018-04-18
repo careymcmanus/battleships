@@ -52,7 +52,7 @@ public class Player : IEnumerable<Ship>
             }
         }
 
-        RandomizeDeployment();
+        //RandomizeDeployment();
     }
 
     /// <summary>
@@ -212,7 +212,7 @@ public class Player : IEnumerable<Ship>
         return result;
     }
 
-    public virtual void RandomizeDeployment()
+    public void RandomizeDeployment()
     {
         bool placementSuccessful = false;
         Direction heading = default(Direction);

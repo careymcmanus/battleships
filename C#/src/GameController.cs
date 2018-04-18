@@ -208,7 +208,7 @@ public class GameController {
     public static void Attack(int row, int col) {
         AttackResult result;
         result = _theGame.Shoot(row, col);
-       CheckAttackResult(result);
+        CheckAttackResult(result);
     }
     
     // <summary>

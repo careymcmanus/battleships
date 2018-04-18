@@ -126,7 +126,7 @@ class UtilityFunctions {
             rowTop = top + (cellGap + cellHeight) * colLeft;
             for (int col = 0; (col <= 9); col++) {
                 colLeft = left + (cellGap + cellWidth) * col;
-                Color fillColor = SMALL_HIT;
+                Color fillColor = Color.Transparent;
                 bool draw= false;
                 draw = true;
                 switch (grid[row, col]) {
@@ -150,7 +150,7 @@ class UtilityFunctions {
                         
                         break;
                     case TileView.Sea:
-                        break;
+                        
 
                     case TileView.Ship:
                         if (small) {
@@ -200,12 +200,8 @@ class UtilityFunctions {
             else {
                 // Up down
                 shipName = ("ShipUD" + s.Size);
-                shipHeight = (((cellHeight + cellGap) 
-                            * s.Size) 
-                            - ((SHIP_GAP * 2) 
-                            - cellGap));
-                shipWidth = (cellWidth 
-                            - (SHIP_GAP * 2));
+                shipHeight = (((cellHeight + cellGap) * s.Size) - ((SHIP_GAP * 2) - cellGap));
+                shipWidth = (cellWidth - (SHIP_GAP * 2));
             }
             
             if (!small) {
@@ -283,12 +279,8 @@ class UtilityFunctions {
         AnimationScript animation;
         animation = SwinGame.LoadAnimationScript("splash.txt");
         s = SwinGame.CreateSprite(imgObj, animation);
-        s.X = (FIELD_LEFT 
-                    + (col 
-                    * (CELL_WIDTH + CELL_GAP)));
-        s.Y = (FIELD_TOP 
-                    + (row 
-                    * (CELL_HEIGHT + CELL_GAP)));
+        s.X = (FIELD_LEFT + (col * (CELL_WIDTH + CELL_GAP)));
+        s.Y = (FIELD_TOP + (row * (CELL_HEIGHT + CELL_GAP)));
         s.StartAnimation("splash");
         _Animations.Add(s);
     }
@@ -319,8 +311,7 @@ class UtilityFunctions {
     
     public static void DrawAnimationSequence() {
         int i;
-        for (i = 1; (i 
-                    <= (ANIMATION_CELLS * FRAMES_PER_CELL)); i++) {
+        for (i = 1; (i <= (ANIMATION_CELLS * FRAMES_PER_CELL)); i++) {
             UpdateAnimations();
             GameController.DrawScreen();
         }
