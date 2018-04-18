@@ -13,7 +13,7 @@ Module EndingGameController
     Public Sub DrawEndOfGame()
 	
 		Dim toDraw as Rectangle
-		Dim whatShouldIPrint as String 
+		Dim whatShouldIPrint as String
 		
         DrawField(ComputerPlayer.PlayerGrid, ComputerPlayer, True)
         DrawSmallField(HumanPlayer.PlayerGrid, HumanPlayer)

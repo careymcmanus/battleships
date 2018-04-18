@@ -3,7 +3,6 @@ Imports SwinGameSDK
 ''' <summary>
 ''' The battle phase is handled by the DiscoveryController.
 ''' </summary>
-''' BUG - possible bug as I believe that ships should be displayed
 Module DiscoveryController
 
     ''' <summary>
@@ -51,9 +50,9 @@ Module DiscoveryController
         Const SHOTS_TOP As Integer = 157
         Const HITS_TOP As Integer = 206
         Const SPLASH_TOP As Integer = 256
-        
-        If (SwinGame.KeyDown(KeyCode.VK_LSHIFT) or SwinGame.KeyDown(KeyCode.VK_RSHIFT)) And SwinGame.KeyDown(KeyCode.VK_C) Then 'TODO - understand what this does
-            DrawField(HumanPlayer.EnemyGrid, ComputerPlayer, True) 
+
+        If (SwinGame.KeyDown(KeyCode.VK_LSHIFT) or SwinGame.KeyDown(KeyCode.VK_RSHIFT)) And SwinGame.KeyDown(KeyCode.VK_C) Then
+            DrawField(HumanPlayer.EnemyGrid, ComputerPlayer, True)
         Else
             DrawField(HumanPlayer.EnemyGrid, ComputerPlayer, False)
         End If

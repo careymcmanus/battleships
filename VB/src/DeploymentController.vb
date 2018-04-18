@@ -3,12 +3,6 @@ Imports SwinGameSDK
 ''' <summary>
 ''' The DeploymentController controls the players actions
 ''' during the deployment phase.
-''' BUG - Ships not being placed where one would expect
-''' BUG - play button being clicked is not consistently ending deployment.
-''' BUG - arrow button not consistently changing direction
-'' 'BUG - random button not consistently randomizing
-
-
 ''' </summary>
 Module DeploymentController
     Private Const SHIPS_TOP As Integer = 98
@@ -67,16 +61,15 @@ Module DeploymentController
             Else
                 DoDeployClick()
             End If
-            'If play button is clicked end deployment
+
             If HumanPlayer.ReadyToDeploy And IsMouseInRectangle(PLAY_BUTTON_LEFT, TOP_BUTTONS_TOP, PLAY_BUTTON_WIDTH, TOP_BUTTONS_HEIGHT) Then
-                EndDeployment() 
-            'If Up button clicked change direction
+                EndDeployment()
             ElseIf IsMouseInRectangle(UP_DOWN_BUTTON_LEFT, TOP_BUTTONS_TOP, DIR_BUTTONS_WIDTH, TOP_BUTTONS_HEIGHT) Then
-                _currentDirection = Direction.LeftRight 
+                _currentDirection = Direction.LeftRight
             ElseIf IsMouseInRectangle(LEFT_RIGHT_BUTTON_LEFT, TOP_BUTTONS_TOP, DIR_BUTTONS_WIDTH, TOP_BUTTONS_HEIGHT) Then
-                _currentDirection = Direction.LeftRight 
+                _currentDirection = Direction.LeftRight
             ElseIf IsMouseInRectangle(RANDOM_BUTTON_LEFT, TOP_BUTTONS_TOP, RANDOM_BUTTON_WIDTH, TOP_BUTTONS_HEIGHT) Then
-                HumanPlayer.RandomizeDeployment() 
+                HumanPlayer.RandomizeDeployment()
             End If
         End If
     End Sub
@@ -103,7 +96,7 @@ Module DeploymentController
             If col >= 0 And col < HumanPlayer.PlayerGrid.Width Then
                 'if in the area try to deploy
                 Try
-                    HumanPlayer.PlayerGrid.MoveShip(row, col, _selectedShip, _currentDirection) 
+                    HumanPlayer.PlayerGrid.MoveShip(row, col, _selectedShip, _currentDirection)
                 Catch ex As Exception
                     Audio.PlaySoundEffect(GameSound("Error"))
                     Message = ex.Message

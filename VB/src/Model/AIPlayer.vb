@@ -45,7 +45,7 @@ Public MustInherit Class AIPlayer : Inherits Player
         ''' </summary>
         ''' <param name="row">the row of the location</param>
         ''' <param name="column">the column of the location</param>
-        Public New(ByVal row As Integer, ByVal column As Integer)
+        Public Sub New(ByVal row As Integer, ByVal column As Integer)
             _Column = column
             _Row = row
         End Sub
