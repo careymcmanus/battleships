@@ -18,10 +18,7 @@ class MenuController {
             "PLAY",
             "SETUP",
             "SCORES",
-            "GRAPHICS", // option
-			"MUSIC",
             "QUIT",
-            "HELP"
         },
 		// Game Menu
 		new string[] {
@@ -104,7 +101,7 @@ class MenuController {
     // '' Handles the processing of user input when the main menu is showing
     // '' </summary>
     public static void HandleMainMenuInput() {
-        MenuController.HandleMenuInput(MAIN_MENU, 0, 0);
+        HandleMenuInput(MAIN_MENU, 0, 0);
     }
     
     // '' <summary>
@@ -112,9 +109,9 @@ class MenuController {
     // '' </summary>
     public static void HandleSetupMenuInput() {
         bool handled;
-        handled = MenuController.HandleMenuInput(SETUP_MENU, 1, 1);
+        handled = HandleMenuInput(SETUP_MENU, 1, 1);
         if (!handled) {
-            MenuController.HandleMenuInput(MAIN_MENU, 0, 0);
+            HandleMenuInput(MAIN_MENU, 0, 0);
         }
         
     }
@@ -126,7 +123,7 @@ class MenuController {
     // '' Player can return to the game, surrender, or quit entirely
     // '' </remarks>
     public static void HandleGameMenuInput() {
-        MenuController.HandleMenuInput(GAME_MENU, 0, 0);
+        HandleMenuInput(GAME_MENU, 0, 0);
     }
     
     // '' <summary>
@@ -147,8 +144,8 @@ class MenuController {
             for (i = 0; (i 
                         <= (_menuStructure[menu].Length - 1)); i++) {
                 // IsMouseOver the i'th button of the menu
-                if (MenuController.IsMouseOverMenu(i, level, xOffset)) {
-                    MenuController.PerformMenuAction(menu, i);
+                if (IsMouseOverMenu(i, level, xOffset)) {
+                    PerformMenuAction(menu, i);
                     return true;
                 }
                 
@@ -170,7 +167,7 @@ class MenuController {
     public static void DrawMainMenu() {
         // Clears the Screen to Black
         // SwinGame.DrawText("Main Menu", Color.White, GameFont("ArialLarge"), 50, 50)
-        MenuController.DrawButtons(MAIN_MENU);
+        DrawButtons(MAIN_MENU);
     }
     
     // '' <summary>
@@ -179,7 +176,7 @@ class MenuController {
     public static void DrawGameMenu() {
         // Clears the Screen to Black
         // SwinGame.DrawText("Paused", Color.White, GameFont("ArialLarge"), 50, 50)
-        MenuController.DrawButtons(GAME_MENU);
+        DrawButtons(GAME_MENU);
     }
     
     // '' <summary>
@@ -191,8 +188,8 @@ class MenuController {
     public static void DrawSettings() {
         // Clears the Screen to Black
         // SwinGame.DrawText("Settings", Color.White, GameFont("ArialLarge"), 50, 50)
-        MenuController.DrawButtons(MAIN_MENU);
-        MenuController.DrawButtons(SETUP_MENU, 1, 1);
+        DrawButtons(MAIN_MENU);
+        DrawButtons(SETUP_MENU, 1, 1);
     }
     
     // '' <summary>
@@ -200,7 +197,7 @@ class MenuController {
     // '' </summary>
     // '' <param name="menu">the index of the menu to draw</param>
     private static void DrawButtons(int menu) {
-        MenuController.DrawButtons(menu, 0, 0);
+        DrawButtons(menu, 0, 0);
     }
     
     // '' <summary>
@@ -217,9 +214,7 @@ class MenuController {
     private static void DrawButtons(int menu, int level, int xOffset) {
         int btnTop;
         Rectangle toDraw = new Rectangle();
-        btnTop = (MENU_TOP 
-                    - ((MENU_GAP + BUTTON_HEIGHT) 
-                    * level));
+        btnTop = MENU_TOP - (MENU_GAP + BUTTON_HEIGHT) * level;
         int i;
         for (i = 0; i <= _menuStructure[menu].Length - 1; i++) {
             int btnLeft;
@@ -244,7 +239,7 @@ class MenuController {
     // '' <param name="button">the index of the button to check</param>
     // '' <returns>true if the mouse is over that button</returns>
     private static bool IsMouseOverButton(int button) {
-        return MenuController.IsMouseOverMenu(button, 0, 0);
+        return IsMouseOverMenu(button, 0, 0);
     }
     
     // '' <summary>
@@ -255,12 +250,8 @@ class MenuController {
     // '' <param name="xOffset">the xOffset of the menu</param>
     // '' <returns>true if the mouse is over the button</returns>
     private static bool IsMouseOverMenu(int button, int level, int xOffset) {
-        int btnTop = (MENU_TOP 
-                    - ((MENU_GAP + BUTTON_HEIGHT) 
-                    * level));
-        int btnLeft = (MENU_LEFT 
-                    + (BUTTON_SEP 
-                    * (button + xOffset)));
+        int btnTop = (MENU_TOP - ((MENU_GAP + BUTTON_HEIGHT)  * level));
+        int btnLeft = (MENU_LEFT + (BUTTON_SEP * (button + xOffset)));
         return UtilityFunctions.IsMouseInRectangle(btnLeft, btnTop, BUTTON_WIDTH, BUTTON_HEIGHT);
     }
     
@@ -272,13 +263,13 @@ class MenuController {
     private static void PerformMenuAction(int menu, int button) {
         switch (menu) {
             case MAIN_MENU:
-                MenuController.PerformMainMenuAction(button);
+                PerformMainMenuAction(button);
                 break;
             case SETUP_MENU:
-                MenuController.PerformSetupMenuAction(button);
+                PerformSetupMenuAction(button);
                 break;
             case GAME_MENU:
-                MenuController.PerformGameMenuAction(button);
+                PerformGameMenuAction(button);
                 break;
         }
     }

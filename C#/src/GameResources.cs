@@ -22,12 +22,9 @@ public class GameResources {
         NewImage("PlayButton", "deploy_play_button.png");
         NewImage("RandomButton", "deploy_randomize_button.png");
         // Ships
-        int i;
-        for (i = 1; (i <= 5); i++) {
-            NewImage(("ShipLR" + i), ("ship_deploy_horiz_" 
-                            + (i + ".png")));
-            NewImage(("ShipUD" + i), ("ship_deploy_vert_" 
-                            + (i + ".png")));
+        for (int i = 1; i <= 5; i++) {
+            NewImage(("ShipLR" + i), ("ship_deploy_horiz_" + (i + ".png")));
+            NewImage(("ShipUD" + i), ("ship_deploy_vert_"  + (i + ".png")));
         }
         
         // Explosions
@@ -44,8 +41,8 @@ public class GameResources {
         NewSound("Lose", "lose.wav");
     }
     
-    private static void LoadMusics()
-    {
+    private static void LoadMusic()
+    {   
         NewMusic("Background", "horrordrone.mp3");
     }
     
@@ -128,7 +125,7 @@ public class GameResources {
         LoadSounds();
         SwinGame.Delay(100);
         ShowMessage("Loading music...", 3);
-        LoadMusics();
+        LoadMusic();
         SwinGame.Delay(100);
         SwinGame.Delay(100);
         ShowMessage("Game loaded...", 5);
@@ -246,21 +243,14 @@ public class GameResources {
     }
     
     private static void FreeSounds()
-    { 
-        foreach (SoundEffect obj in _Sounds.Values) {
-            Audio.FreeSoundEffect(obj);
-        }
-        
+    {
+        Audio.ReleaseAllSoundEffects();
     }
     
-    private static void FreeMusic() {
-      
-        foreach (Music obj in _Music.Values) {
-
-            Audio.FreeMusic(obj);
-                
-        }
-        
+    private static void FreeMusic()
+    {
+        Audio.ReleaseAllMusic();
+             
     }
     
     public static void FreeResources() {

@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using System;
-using System.Collections;
 using SwinGameSDK;
 
 // '' <summary>
@@ -64,22 +62,17 @@ class UtilityFunctions {
     // '' <param name="h">the height to check</param>
     // '' <returns>true if the mouse is in the area checked</returns>
     public static bool IsMouseInRectangle(int x, int y, int w, int h) {
-        Point2D mouse;
+        Point2D mouse = default(Point2D);
         bool result = false;
         mouse = SwinGame.MousePosition();
         // if the mouse is inline with the button horizontally
-        if (((mouse.X >= x) 
-                    && (mouse.X 
-                    <= (x + w)))) {
+        if (((mouse.X >= x) && (mouse.X <= (x + w)))) {
             // Check vertical position
-            if (((mouse.Y >= y) 
-                        && (mouse.Y 
-                        <= (y + h)))) {
+            if (((mouse.Y >= y) && (mouse.Y <= (y + h))))
+            {
                 result = true;
             }
-            
         }
-        
         return result;
     }
     
@@ -100,13 +93,14 @@ class UtilityFunctions {
     // '' <param name="thePlayer">the player to show the ships of</param>
     public static void DrawSmallField(ISeaGrid grid, Player thePlayer) {
         const int SMALL_FIELD_TOP = 373;
-        int SMALL_FIELD_LEFT = 39;
+        const int SMALL_FIELD_LEFT = 39;
         const int SMALL_FIELD_HEIGHT = 166;
-        int SMALL_FIELD_WIDTH = 166;
+        const int SMALL_FIELD_WIDTH = 166;
         const int SMALL_FIELD_CELL_HEIGHT = 13;
-        int SMALL_FIELD_CELL_WIDTH = 13;
+        const int SMALL_FIELD_CELL_WIDTH = 13;
         const int SMALL_FIELD_CELL_GAP = 4;
-        UtilityFunctions.DrawCustomField(grid, thePlayer, true, true, SMALL_FIELD_LEFT, SMALL_FIELD_TOP, SMALL_FIELD_WIDTH, SMALL_FIELD_HEIGHT, SMALL_FIELD_CELL_WIDTH, SMALL_FIELD_CELL_HEIGHT, SMALL_FIELD_CELL_GAP);
+
+        DrawCustomField(grid, thePlayer, true, true, SMALL_FIELD_LEFT, SMALL_FIELD_TOP, SMALL_FIELD_WIDTH, SMALL_FIELD_HEIGHT, SMALL_FIELD_CELL_WIDTH, SMALL_FIELD_CELL_HEIGHT, SMALL_FIELD_CELL_GAP);
     }
     
     // '' <summary>
