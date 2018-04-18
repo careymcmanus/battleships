@@ -120,15 +120,15 @@ class UtilityFunctions {
     private static void DrawCustomField(ISeaGrid grid, Player thePlayer, bool small, bool showShips, int left, int top, int width, int height, int cellWidth, int cellHeight, int cellGap) {
         // SwinGame.FillRectangle(Color.Blue, left, top, width, height)
         int rowTop = 0;
-        int colLeft = 0;
+        int colLeft = 0; 
         // Draw the grid
         for (int row = 0; (row <= 9); row++) {
-            rowTop = top + (cellGap + cellHeight) * colLeft;
+            rowTop = top + (cellGap + cellHeight) * row;
             for (int col = 0; (col <= 9); col++) {
                 colLeft = left + (cellGap + cellWidth) * col;
-                Color fillColor = Color.Transparent;
-                bool draw= false;
-                draw = true;
+                Color fillColor = default(Color);
+                bool draw = true;
+               
                 switch (grid[row, col]) {
                     
                     case TileView.Miss:
