@@ -281,6 +281,9 @@ public class GameController {
             case GameState.ViewingHighScores:
                 HighScoreController.HandleHighScoreInput();
                 break;
+            case GameState.ViewingHowTo:
+                HowToController.HandleHowToInput();
+                break;
         }
         UtilityFunctions.UpdateAnimations();
     }
@@ -303,6 +306,9 @@ public class GameController {
             case GameState.AlteringSettings:
                 MenuController.DrawSettings();
                 break;
+            case GameState.ViewingHowTo:
+                HowToController.DrawHowTo();
+                break;
             case GameState.Deploying:
                 DeploymentController.DrawDeployment();
                 break;
@@ -315,6 +321,7 @@ public class GameController {
             case GameState.ViewingHighScores:
                 HighScoreController.DrawHighScores();
                 break;
+            
         }
         UtilityFunctions.DrawAnimations();
         SwinGame.RefreshScreen();

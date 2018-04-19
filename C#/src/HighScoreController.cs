@@ -109,19 +109,12 @@ class HighScoreController {
             s = _Scores[i];
             // for scores 1 - 9 use 01 - 09
             if ((i < 9)) {
-                SwinGame.DrawText((" " 
-                                + ((i + 1) + (":   " 
-                                + (s.Name + ("   " + s.Value))))), Color.White, GameResources.GameFont("Courier"), SCORES_LEFT, (SCORES_TOP 
-                                + (i * SCORE_GAP)));
+                SwinGame.DrawText((" " + ((i + 1) + (":   " + (s.Name + ("   " + s.Value))))), Color.White, GameResources.GameFont("Courier"), SCORES_LEFT, (SCORES_TOP + (i * SCORE_GAP)));
             }
             else {
-                SwinGame.DrawText(((i + 1) + (":   " 
-                                + (s.Name + ("   " + s.Value)))), Color.White, GameResources.GameFont("Courier"), SCORES_LEFT, (SCORES_TOP 
-                                + (i * SCORE_GAP)));
-            }
-            
+                SwinGame.DrawText(((i + 1) + (":   " + (s.Name + ("   " + s.Value)))), Color.White, GameResources.GameFont("Courier"), SCORES_LEFT, (SCORES_TOP + (i * SCORE_GAP)));
+            } 
         }
-        
     }
     
     // '' <summary>
@@ -129,8 +122,7 @@ class HighScoreController {
     // '' </summary>
     // '' <remarks></remarks>
     public static void HandleHighScoreInput() {
-        if ((SwinGame.MouseClicked(MouseButton.LeftButton) 
-                    || (SwinGame.KeyTyped(KeyCode.EscapeKey) || SwinGame.KeyTyped(KeyCode.ReturnKey)))) {
+        if ((SwinGame.MouseClicked(MouseButton.LeftButton) || (SwinGame.KeyTyped(KeyCode.EscapeKey) || SwinGame.KeyTyped(KeyCode.ReturnKey)))) {
             GameController.EndCurrentState();
         }
         

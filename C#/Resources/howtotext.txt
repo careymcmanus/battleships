@@ -1,0 +1,6 @@
+To play this game a player
+chooses locations for their
+ships to be on the battlefield.
+The players then take it in
+Turns to try and attack the
+other players battleships.

@@ -19,6 +19,11 @@ public enum GameState {
     // '' The player is looking at the high scores
     // '' </summary>
     ViewingHighScores,
+
+    // <summary>
+    // The player is looking at the HowTo menu
+    // </summary>
+    ViewingHowTo,
     
     // '' <summary>
     // '' The player is altering the game settings

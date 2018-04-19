@@ -45,6 +45,7 @@
     <Compile Include="src\GameLogic.cs" />
     <Compile Include="src\GameResources.cs" />
     <Compile Include="src\GameState.cs" />
+    <Compile Include="src\HowToController.cs" />
     <Compile Include="src\HighScoreController.cs" />
     <Compile Include="src\MenuController.cs" />
     <Compile Include="src\Model\AIHardPlayer.cs" />

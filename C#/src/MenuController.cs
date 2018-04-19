@@ -16,9 +16,14 @@ class MenuController {
         {
         new string[] {
             "PLAY",
+            "HOW TO",
             "SETUP",
             "SCORES",
             "QUIT",
+        },
+        new string[]
+        {
+            "HOW TO PLAY"
         },
 		// Game Menu
 		new string[] {
@@ -52,49 +57,34 @@ class MenuController {
     };
 
     private const int MENU_TOP = 575;
-    
     private const int MENU_LEFT = 30;
-    
     private const int MENU_GAP = 0;
-    
     private const int BUTTON_WIDTH = 75;
-    
     private const int BUTTON_HEIGHT = 15;
     
     private const int BUTTON_SEP = (BUTTON_WIDTH + MENU_GAP);
-    
     private const int TEXT_OFFSET = 0;
-    
     private const int MAIN_MENU = 0;
-    
-    private const int GAME_MENU = 1;
-    
-    private const int SETUP_MENU = 2;
-    
+    private const int HOWTO_MENU = 1;
+    private const int GAME_MENU = 2;
+    private const int SETUP_MENU = 3;
+
     private const int MAIN_MENU_PLAY_BUTTON = 0;
-    
-    private const int MAIN_MENU_SETUP_BUTTON = 1;
-    
-    private const int MAIN_MENU_TOP_SCORES_BUTTON = 2;
-    
-    private const int MAIN_MENU_QUIT_BUTTON = 3;
+    private const int MAIN_MENU_HOWTO_BUTTON = 1;
+    private const int MAIN_MENU_SETUP_BUTTON = 2;
+    private const int MAIN_MENU_TOP_SCORES_BUTTON = 3;
+    private const int MAIN_MENU_QUIT_BUTTON = 4;
     
     private const int SETUP_MENU_EASY_BUTTON = 0;
-    
     private const int SETUP_MENU_MEDIUM_BUTTON = 1;
-    
     private const int SETUP_MENU_HARD_BUTTON = 2;
-    
     private const int SETUP_MENU_EXIT_BUTTON = 3;
     
     private const int GAME_MENU_RETURN_BUTTON = 0;
-    
     private const int GAME_MENU_SURRENDER_BUTTON = 1;
-    
     private const int GAME_MENU_QUIT_BUTTON = 2;
     
     private static Color MENU_COLOR = SwinGame.RGBAColor(2, 167, 252, 255);
-    
     private static Color HIGHLIGHT_COLOR = SwinGame.RGBAColor(1, 57, 86, 255);
     
     // '' <summary>
@@ -125,7 +115,7 @@ class MenuController {
     public static void HandleGameMenuInput() {
         HandleMenuInput(GAME_MENU, 0, 0);
     }
-    
+
     // '' <summary>
     // '' Handles input for the specified menu.
     // '' </summary>
@@ -169,6 +159,7 @@ class MenuController {
         // SwinGame.DrawText("Main Menu", Color.White, GameFont("ArialLarge"), 50, 50)
         DrawButtons(MAIN_MENU);
     }
+
     
     // '' <summary>
     // '' Draws the Game menu to the screen
@@ -283,6 +274,9 @@ class MenuController {
             case MAIN_MENU_PLAY_BUTTON:
                 GameController.StartGame();
                 break;
+            case MAIN_MENU_HOWTO_BUTTON:
+                GameController.AddNewState(GameState.ViewingHowTo);
+                break;
             case MAIN_MENU_SETUP_BUTTON:
                 GameController.AddNewState(GameState.AlteringSettings);
                 break;
@@ -314,6 +308,8 @@ class MenuController {
         // Always end state - handles exit button as well
         GameController.EndCurrentState();
     }
+
+
     
     // '' <summary>
     // '' The game menu was clicked, perform the button's action.
