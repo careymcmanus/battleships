@@ -1,6 +1,41 @@
-To play this game a player
-chooses locations for their
-ships to be on the battlefield.
-The players then take it in
-Turns to try and attack the
-other players battleships.
+The game is played on two 10x10
+grids. The grids are identified in 
+columns and rows by order. On one 
+grid, you arrange your own ships 
+and records of shots by the 
+opponent while the other grid
+is used to record your own shots.
+
+Before the gameplay, you have 
+to secretly arrange your ships 
+on a grid. 5 shipsoccupy a number
+of squares on the grid, standing 
+either horizontally or vertically.
+Ships are not allowed to overlap.
+
+After ships have been positioned, 
+the game goes. The screen shows 
+two grids on the screen. The left 
+grid show the position of your
+own arrangement of ships and records 
+of the AI’s shots while the right
+ one records your shots.
+
+In each round, each player takes 
+a turn to shot a target square into
+the opponent's grid. If it is a 
+"hit", an O is ticked in that square 
+and the attacking player has a 
+continuing turn to take a shot, he 
+can continue to shot until he misses. 
+If it is a "miss", an X is ticked in 
+that square and turning to the 
+opponents'turn. When a ship is shot 
+down, all the square is occupied by 
+it are high-lighted in order that 
+the attacking player will not shoot 
+to the same square a second time.
+
+The game will proceed in a series of
+rounds until all ships of a player
+are sunk, then their opponent wins.
