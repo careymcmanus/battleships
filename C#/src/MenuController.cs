@@ -29,7 +29,7 @@ class MenuController {
 		new string[] {
             "RETURN",
             "SURRENDER",
-            "RESTART",
+            "REMATCH",
             "QUIT"
         },
 		// Setup Menu
@@ -82,7 +82,8 @@ class MenuController {
     
     private const int GAME_MENU_RETURN_BUTTON = 0;
     private const int GAME_MENU_SURRENDER_BUTTON = 1;
-    private const int GAME_MENU_QUIT_BUTTON = 2;
+    private const int GAME_MENU_REMATCH_BUTTON = 2;
+    private const int GAME_MENU_QUIT_BUTTON = 3;
     
     private static Color MENU_COLOR = SwinGame.RGBAColor(2, 167, 252, 255);
     private static Color HIGHLIGHT_COLOR = SwinGame.RGBAColor(1, 57, 86, 255);
@@ -325,6 +326,13 @@ class MenuController {
                 // end game menu
                 GameController.EndCurrentState();
                 // end game
+                break;
+            case GAME_MENU_REMATCH_BUTTON:
+                GameController.EndCurrentState();
+                // end game menu
+                GameController.EndCurrentState();
+                // end game
+                GameController.StartGame();
                 break;
             case GAME_MENU_QUIT_BUTTON:
                 GameController.AddNewState(GameState.Quitting);
