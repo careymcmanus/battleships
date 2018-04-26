@@ -12,7 +12,7 @@ using SwinGameSDK;
 // '' </remarks>
 class HighScoreController {
     
-    private const int NAME_WIDTH = 3;
+    private const int NAME_WIDTH = 10;
     
     private const int SCORES_LEFT = 490;
     
@@ -46,18 +46,18 @@ class HighScoreController {
     private static List<Score> _Scores = new List<Score>();
     
     private static void LoadScores() {
-        string filename;
+        string filename = null;
         filename = SwinGame.PathToResource("highscores.txt");
-        StreamReader input;
+        StreamReader input = default(StreamReader);
         input = new StreamReader(filename);
         // Read in the # of scores
-        int numScores;
+        int numScores = 0;
         numScores = Convert.ToInt32(input.ReadLine());
         _Scores.Clear();
         int i;
         for (i = 1; (i <= numScores); i++) {
-            Score s;
-            string line;
+            Score s= default(Score);
+            string line = null;
             line = input.ReadLine();
             s.Name = line.Substring(0, NAME_WIDTH);
             s.Value = Convert.ToInt32(line.Substring(NAME_WIDTH));
@@ -78,9 +78,9 @@ class HighScoreController {
     // '' Where NNN is the name and SSS is the score
     // '' </remarks>
     private static void SaveScores() {
-        string filename;
+        string filename = null;
         filename = SwinGame.PathToResource("highscores.txt");
-        StreamWriter output;
+        StreamWriter output = default(StreamWriter);
         output = new StreamWriter(filename);
         output.WriteLine(_Scores.Count);
         foreach (Score s in _Scores) {
@@ -160,7 +160,7 @@ class HighScoreController {
             
             s.Name = SwinGame.TextReadAsASCII();
             if ((s.Name.Length < 3)) {
-                s.Name = (s.Name + new string(Convert.ToChar(" "), (3 - s.Name.Length)));
+                s.Name = (s.Name + new string(Convert.ToChar(" "), (10 - s.Name.Length)));
             }
             
             _Scores.RemoveAt((_Scores.Count - 1));
