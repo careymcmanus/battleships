@@ -55,7 +55,7 @@ class HighScoreController {
         numScores = Convert.ToInt32(input.ReadLine());
         _Scores.Clear();
         int i;
-        for (i = 1; (i <= numScores); i++) {
+        for (i = 1; (i <= numScores); i++) { // read the file one by one
             Score s;
             string line;
             line = input.ReadLine();
@@ -83,7 +83,7 @@ class HighScoreController {
         StreamWriter output;
         output = new StreamWriter(filename);
         output.WriteLine(_Scores.Count);
-        foreach (Score s in _Scores) {
+        foreach (Score s in _Scores) { // print the score
             output.WriteLine((s.Name + s.Value));
         }
         
@@ -159,7 +159,7 @@ class HighScoreController {
             }
             
             s.Name = SwinGame.TextReadAsASCII();
-            if ((s.Name.Length < 3)) {
+            if ((s.Name.Length < 3)) { // check if name is less than 3 character, to print the name
                 s.Name = (s.Name + new string(Convert.ToChar(" "), (3 - s.Name.Length)));
             }
             

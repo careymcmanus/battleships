@@ -33,6 +33,7 @@ public class GameResources {
     }
     
     private static void LoadSounds() {
+		// sound effect
         NewSound("Error", "error.wav");
         NewSound("Hit", "hit.wav");
         NewSound("Sink", "sink.wav");
@@ -42,7 +43,7 @@ public class GameResources {
     }
     
     private static void LoadMusic()
-    {   
+    {   // music
         NewMusic("Background", "horrordrone.mp3");
     }
     
@@ -108,7 +109,7 @@ public class GameResources {
     // '' The Resources Class stores all of the Games Media Resources, such as Images, Fonts
     // '' Sounds, Music.
     // '' </summary>
-    public static void LoadResources() {
+    public static void LoadResources() { // loading all resources
         int width;
         int height;
         width = SwinGame.ScreenWidth();
@@ -151,7 +152,7 @@ public class GameResources {
         Audio.PlaySoundEffect(_StartSound);
         SwinGame.Delay(200);
         int i;
-        for (i = 0; (i 
+        for (i = 0; (i  // play the intro by refreshing screen and draw the screen
                     <= (ANI_CELL_COUNT - 1)); i++) {
             SwinGame.DrawBitmap(_Background, 0, 0);
             SwinGame.Delay(20);
@@ -203,15 +204,15 @@ public class GameResources {
     }
     
     private static void NewFont(string fontName, string filename, int size) {
-        _Fonts.Add(fontName, SwinGame.LoadFont(SwinGame.PathToResource(filename, ResourceKind.FontResource), size));
+        _Fonts.Add(fontName, SwinGame.LoadFont(SwinGame.PathToResource(filename, ResourceKind.FontResource), size)); // add new font
     }
     
     private static void NewImage(string imageName, string filename) {
-        _Images.Add(imageName, SwinGame.LoadBitmap(SwinGame.PathToResource(filename, ResourceKind.BitmapResource)));
+        _Images.Add(imageName, SwinGame.LoadBitmap(SwinGame.PathToResource(filename, ResourceKind.BitmapResource))); // add new image
     }
     
     private static void NewTransparentColorImage(string imageName, string fileName, Color transColor) {
-        _Images.Add(imageName, SwinGame.LoadBitmap(SwinGame.PathToResource(fileName, ResourceKind.BitmapResource)));
+        _Images.Add(imageName, SwinGame.LoadBitmap(SwinGame.PathToResource(fileName, ResourceKind.BitmapResource))); 
     }
     
     private static void NewTransparentColourImage(string imageName, string fileName, Color transColor) {
@@ -219,11 +220,11 @@ public class GameResources {
     }
     
     private static void NewSound(string soundName, string filename) {
-        _Sounds.Add(soundName, Audio.LoadSoundEffect(SwinGame.PathToResource(filename, ResourceKind.SoundResource)));
+        _Sounds.Add(soundName, Audio.LoadSoundEffect(SwinGame.PathToResource(filename, ResourceKind.SoundResource))); // add new sound
     }
     
     private static void NewMusic(string musicName, string filename) {
-        _Music.Add(musicName, Audio.LoadMusic(SwinGame.PathToResource(filename, ResourceKind.SoundResource)));
+        _Music.Add(musicName, Audio.LoadMusic(SwinGame.PathToResource(filename, ResourceKind.SoundResource))); // add new music
     }
     
     private static void FreeFonts()
