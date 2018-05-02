@@ -324,7 +324,7 @@ public class GameController {
             
         }
         UtilityFunctions.DrawAnimations();
-        SwinGame.RefreshScreen(); 
+        SwinGame.RefreshScreen(60); 
     }
     
     // <summary>
