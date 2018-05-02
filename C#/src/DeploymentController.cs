@@ -141,7 +141,7 @@ static class DeploymentController {
         // DrawShips
         foreach (ShipName sn in Enum.GetValues(typeof(ShipName))) {
             int i = 0;
-            i = (int)sn - 1;
+            i = ((int)sn) - 1;
             if ((i >= 0)) {
                 if ((sn == _selectedShip)) {
                     SwinGame.DrawBitmap(GameResources.GameImage("SelectedShip"), SHIPS_LEFT, (SHIPS_TOP + (i * SHIPS_HEIGHT)));
@@ -149,9 +149,9 @@ static class DeploymentController {
                     // Else
                     //     SwinGame.FillRectangle(Color.Gray, SHIPS_LEFT, SHIPS_TOP + i * SHIPS_HEIGHT, SHIPS_WIDTH, SHIPS_HEIGHT)
                 }
-                
+
                 // SwinGame.DrawRectangle(Color.Black, SHIPS_LEFT, SHIPS_TOP + i * SHIPS_HEIGHT, SHIPS_WIDTH, SHIPS_HEIGHT)
-                // SwinGame.DrawText(sn.ToString(), Color.Black, GameFont("Courier"), SHIPS_LEFT + TEXT_OFFSET, SHIPS_TOP + i * SHIPS_HEIGHT)
+                SwinGame.DrawText(sn.ToString(), Color.White, GameResources.GameFont("Courier"), SHIPS_LEFT + TEXT_OFFSET, SHIPS_TOP + i * SHIPS_HEIGHT);
             }
             
         }
