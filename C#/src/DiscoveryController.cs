@@ -15,11 +15,11 @@ class DiscoveryController {
     //  attack a location.
     //  </remarks>
     public static void HandleDiscoveryInput() {
-        if (SwinGame.KeyTyped(KeyCode.EscapeKey)) {
+        if (SwinGame.KeyTyped(KeyCode.EscapeKey)) { // condition if esc key is pressed
             GameController.AddNewState(GameState.ViewingGameMenu);
         }
         
-        if (SwinGame.MouseClicked(MouseButton.LeftButton)) {
+        if (SwinGame.MouseClicked(MouseButton.LeftButton)) { // condition if m1 key is pressed
             DiscoveryController.DoAttack();
         }
         
@@ -33,11 +33,11 @@ class DiscoveryController {
         mouse = SwinGame.MousePosition();
         // Calculate the row/col clicked
 
-        int row = Convert.ToInt32(Math.Floor(((mouse.Y - UtilityFunctions.FIELD_TOP) / (UtilityFunctions.CELL_HEIGHT + UtilityFunctions.CELL_GAP))));
-        int col = Convert.ToInt32(Math.Floor(((mouse.X - UtilityFunctions.FIELD_LEFT) / (UtilityFunctions.CELL_WIDTH + UtilityFunctions.CELL_GAP))));
-        if (((row >= 0) && (row < GameController.HumanPlayer.EnemyGrid.Height))) {
+        int row = Convert.ToInt32(Math.Floor(((mouse.Y - UtilityFunctions.FIELD_TOP) / (UtilityFunctions.CELL_HEIGHT + UtilityFunctions.CELL_GAP)))); // draw grid row
+        int col = Convert.ToInt32(Math.Floor(((mouse.X - UtilityFunctions.FIELD_LEFT) / (UtilityFunctions.CELL_WIDTH + UtilityFunctions.CELL_GAP)))); // draw grid column
+        if (((row >= 0) && (row < GameController.HumanPlayer.EnemyGrid.Height))) { // check if its a valid space to do attack
             if (((col >= 0) && (col < GameController.HumanPlayer.EnemyGrid.Width))) {
-                GameController.Attack(row, col);
+                GameController.Attack(row, col); //  commence  attack
             }
         }
     }
@@ -53,15 +53,15 @@ class DiscoveryController {
         if ((SwinGame.KeyDown(KeyCode.LeftShiftKey) || SwinGame.KeyDown(KeyCode.RightShiftKey)) && SwinGame.KeyDown(KeyCode.CKey)) 
         {
             // TODO - understand what this does
-            UtilityFunctions.DrawField(GameController.HumanPlayer.EnemyGrid, GameController.ComputerPlayer, true);
+            UtilityFunctions.DrawField(GameController.HumanPlayer.EnemyGrid, GameController.ComputerPlayer, true); // This is what happen if enemy's ship discovered
             // BUG - possible bug as I believe that ships should be displayed
         }
         else {
-            UtilityFunctions.DrawField(GameController.HumanPlayer.EnemyGrid, GameController.ComputerPlayer, false);
+            UtilityFunctions.DrawField(GameController.HumanPlayer.EnemyGrid, GameController.ComputerPlayer, false); // this is when you fails to discover enemy ship
         }
 
         UtilityFunctions.DrawSmallField(GameController.HumanPlayer.PlayerGrid, GameController.HumanPlayer);
-        UtilityFunctions.DrawMessage();
+        UtilityFunctions.DrawMessage(); // draw message
         SwinGame.DrawText(GameController.HumanPlayer.Shots.ToString(), Color.White, GameResources.GameFont("Menu"), SCORES_LEFT, SHOTS_TOP);
         SwinGame.DrawText(GameController.HumanPlayer.Hits.ToString(), Color.White, GameResources.GameFont("Menu"), SCORES_LEFT, HITS_TOP);
         SwinGame.DrawText(GameController.HumanPlayer.Missed.ToString(), Color.White, GameResources.GameFont("Menu"), SCORES_LEFT, SPLASH_TOP);

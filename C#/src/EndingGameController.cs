@@ -11,20 +11,20 @@ class EndingGameController {
     public static void DrawEndOfGame() {
         Rectangle toDraw = new Rectangle();
         string whatShouldIPrint;
-        UtilityFunctions.DrawField(GameController.ComputerPlayer.PlayerGrid, GameController.ComputerPlayer, true);
-        UtilityFunctions.DrawSmallField(GameController.HumanPlayer.PlayerGrid, GameController.HumanPlayer);
+        UtilityFunctions.DrawField(GameController.ComputerPlayer.PlayerGrid, GameController.ComputerPlayer, true); // draw field for end of game
+        UtilityFunctions.DrawSmallField(GameController.HumanPlayer.PlayerGrid, GameController.HumanPlayer); // draw small field for end of game
         toDraw.X = 0;
         toDraw.Y = 250;
         toDraw.Width = SwinGame.ScreenWidth();
         toDraw.Height = SwinGame.ScreenHeight();
-        if (GameController.HumanPlayer.IsDestroyed) {
+        if (GameController.HumanPlayer.IsDestroyed) { // check if you lose
             whatShouldIPrint = "YOU LOSE!";
         }
         else {
             whatShouldIPrint = "-- WINNER --";
         }
         
-        SwinGame.DrawText(whatShouldIPrint, Color.White, Color.Transparent, GameResources.GameFont("ArialLarge"), FontAlignment.AlignCenter, toDraw);
+        SwinGame.DrawText(whatShouldIPrint, Color.White, Color.Transparent, GameResources.GameFont("ArialLarge"), FontAlignment.AlignCenter, toDraw); // draw text for end game screen
     }
     
     // <summary>
@@ -33,7 +33,7 @@ class EndingGameController {
     // </summary>
     public static void HandleEndOfGameInput() {
         if ((SwinGame.MouseClicked(MouseButton.LeftButton) || (SwinGame.KeyTyped(KeyCode.ReturnKey) || SwinGame.KeyTyped(KeyCode.EscapeKey)))) {
-            HighScoreController.ReadHighScore(GameController.HumanPlayer.Score);
+            HighScoreController.ReadHighScore(GameController.HumanPlayer.Score); // open highscore
             GameController.EndCurrentState();
         }
         

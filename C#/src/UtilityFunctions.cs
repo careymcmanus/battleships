@@ -122,14 +122,14 @@ class UtilityFunctions {
         int rowTop = 0;
         int colLeft = 0; 
         // Draw the grid
-        for (int row = 0; (row <= 9); row++) {
+        for (int row = 0; (row <= 9); row++) { // for each row,  color will be filled 
             rowTop = top + (cellGap + cellHeight) * row;
-            for (int col = 0; (col <= 9); col++) {
+            for (int col = 0; (col <= 9); col++) { // for each colum,  color will be filled 
                 colLeft = left + (cellGap + cellWidth) * col;
                 Color fillColor = default(Color);
                 bool draw = true;
                
-                switch (grid[row, col]) {
+                switch (grid[row, col]) { // check what tile it is
                     
                     case TileView.Miss:
                         if (small) {
@@ -162,7 +162,7 @@ class UtilityFunctions {
                         
                         break;
                 }
-                if (draw) {
+                if (draw) { 
                     SwinGame.FillRectangle(fillColor, colLeft, rowTop, cellWidth, cellHeight);
                     if (!small) {
                         SwinGame.DrawRectangle(OUTLINE_COLOR, colLeft, rowTop, cellWidth, cellHeight);
@@ -174,7 +174,7 @@ class UtilityFunctions {
             
         }
         
-        if (!showShips) {
+        if (!showShips) { // if ship doesnt want to be shown it will end
             return;
         }
         
@@ -182,10 +182,9 @@ class UtilityFunctions {
         int shipWidth;
         string shipName;
         // Draw the ships
-        foreach (Ship s in thePlayer) {
+        foreach (Ship s in thePlayer) {`
             if (s == null || !s.IsDeployed)
                 continue;
-
             rowTop = top + (cellGap + cellHeight) * s.Row + SHIP_GAP;
             colLeft = left + (cellGap + cellWidth) * s.Column + SHIP_GAP;
             if ((s.Direction == Direction.LeftRight)) {
@@ -204,7 +203,7 @@ class UtilityFunctions {
                 shipWidth = (cellWidth - (SHIP_GAP * 2));
             }
             
-            if (!small) {
+            if (!small) { // check if small or not
                 SwinGame.DrawBitmap(GameResources.GameImage(shipName), colLeft, rowTop);
             }
             else {
@@ -240,13 +239,13 @@ class UtilityFunctions {
     // '' Draws the background for the current state of the game
     // '' </summary>
     public static void DrawBackground() {
-        switch (GameController.CurrentState) {
+        switch (GameController.CurrentState) { // draw background for every game state
             case GameState.ViewingMainMenu:
             case GameState.ViewingGameMenu:
             case GameState.AlteringSettings:
             case GameState.ViewingHowTo:
             case GameState.ViewingHighScores:
-                SwinGame.DrawBitmap(GameResources.GameImage("Menu"), 0, 0);
+                SwinGame.DrawBitmap(GameResources.GameImage("Menu"), 0, 0); 
                 break;
             case GameState.Discovering:
             case GameState.EndingGame:
@@ -263,11 +262,11 @@ class UtilityFunctions {
     }
     
     public static void AddExplosion(int row, int col) {
-        UtilityFunctions.AddAnimation(row, col, "Splash");
+        UtilityFunctions.AddAnimation(row, col, "Splash"); // show animation
     }
     
     public static void AddSplash(int row, int col) {
-        UtilityFunctions.AddAnimation(row, col, "Splash");
+        UtilityFunctions.AddAnimation(row, col, "Splash"); // animation for splash
     }
     
     private static List<Sprite> _Animations = new List<Sprite>();
@@ -283,21 +282,21 @@ class UtilityFunctions {
         s.X = (FIELD_LEFT + (col * (CELL_WIDTH + CELL_GAP)));
         s.Y = (FIELD_TOP + (row * (CELL_HEIGHT + CELL_GAP)));
         s.StartAnimation("splash");
-        _Animations.Add(s);
+        _Animations.Add(s); 
     }
     
     public static void UpdateAnimations() {
         List<Sprite> ended = new List<Sprite>();
-        foreach (Sprite s in _Animations) {
+        foreach (Sprite s in _Animations) { // for every animation sprite,
             SwinGame.UpdateSprite(s);
             if (s.AnimationHasEnded) {
-                ended.Add(s);
+                ended.Add(s); // end animation
             }
             
         }
         
         foreach (Sprite s in ended) {
-            _Animations.Remove(s);
+            _Animations.Remove(s); // Remove animation
             SwinGame.FreeSprite(s);
         }
         
@@ -305,12 +304,12 @@ class UtilityFunctions {
     
     public static void DrawAnimations() {
         foreach (Sprite s in _Animations) {
-            SwinGame.DrawSprite(s);
+            SwinGame.DrawSprite(s); // draw animation
         }
         
     }
     
-    public static void DrawAnimationSequence() {
+    public static void DrawAnimationSequence() { // animate the animation
         int i;
         for (i = 1; (i <= (ANIMATION_CELLS * FRAMES_PER_CELL)); i++) {
             UpdateAnimations();
