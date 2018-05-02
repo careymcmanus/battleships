@@ -78,7 +78,7 @@ public class GameController {
                 break;
         }
         _human = new Player(_theGame);
-        // AddHandler _human.PlayerGrid.Changed, AddressOf GridChanged
+         _human.PlayerGrid.Changed += GridChanged;
         _ai.PlayerGrid.Changed += GridChanged;
         _theGame.AttackCompleted += AttackCompleted;
 

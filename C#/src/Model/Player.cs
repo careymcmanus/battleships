@@ -52,7 +52,7 @@ public class Player : IEnumerable<Ship>
             }
         }
 
-        //RandomizeDeployment();
+        RandomizeDeployment();
     }
 
     /// <summary>

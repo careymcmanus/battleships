@@ -182,7 +182,7 @@ class UtilityFunctions {
         int shipWidth;
         string shipName;
         // Draw the ships
-        foreach (Ship s in thePlayer) {`
+        foreach (Ship s in thePlayer) {
             if (s == null || !s.IsDeployed)
                 continue;
             rowTop = top + (cellGap + cellHeight) * s.Row + SHIP_GAP;
