@@ -113,7 +113,7 @@ public class AIHardPlayer : AIPlayer
             switch (_CurrentState)
             {
                 case AIStates.Searching:
-                    SearchCoords(ref row, ref column);
+                    SearchCoords(ref row, ref column); // searching coordinates
                     break;
                 case AIStates.TargetingShip:
                 case AIStates.HittingShip:
@@ -139,7 +139,7 @@ public class AIHardPlayer : AIPlayer
         t = _Targets.Pop();
 
         row = t.ShotAt.Row;
-        column = t.ShotAt.Column;
+        column = t.ShotAt.Column;// shooting
         _CurrentTarget = t;
     }
 
@@ -170,13 +170,13 @@ public class AIHardPlayer : AIPlayer
                 _CurrentTarget = null;
                 break;
             case ResultOfAttack.Hit:
-                ProcessHit(row, col);
+                ProcessHit(row, col); // if it hit
                 break;
             case ResultOfAttack.Destroyed:
-                ProcessDestroy(row, col, result.Ship);
+                ProcessDestroy(row, col, result.Ship); // if itn destroy 
                 break;
             case ResultOfAttack.ShotAlready:
-                throw new ApplicationException("Error in AI");
+                throw new ApplicationException("Error in AI"); // if it already attack that square
         }
 
         if (_Targets.Count == 0)
