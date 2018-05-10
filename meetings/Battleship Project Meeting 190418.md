@@ -12,7 +12,7 @@
     Impediments
     - Lots of things on your plate
 
--Ashen
+- Ashen
     - has done some documentation
     - Found unused files
     - Had meeting with Endru
@@ -24,7 +24,7 @@
     Impediments
     - Lots of things on plate
 
--Carey
+- Carey
     - Converted code to C# and got it to compile
     - Validated Code
     - Fixed some bugs
@@ -36,7 +36,7 @@
     - Getting Sick
     - Lots of things on plate
 
--Huy 
+- Huy 
     - Validation of Code
     - Finish Team Report week 4
     - Completed File list description
