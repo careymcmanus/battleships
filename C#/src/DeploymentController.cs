@@ -40,29 +40,29 @@ static class DeploymentController {
     // </remarks>
     public static void HandleDeploymentInput() {
         if (SwinGame.KeyTyped(KeyCode.EscapeKey)) {
-           GameController.AddNewState(GameState.ViewingGameMenu);
+           GameController.AddNewState(GameState.ViewingGameMenu); // open game menu
         }
         
         if ((SwinGame.KeyTyped(KeyCode.UpKey) || SwinGame.KeyTyped(KeyCode.DownKey))) {
-            _currentDirection = Direction.UpDown;
+            _currentDirection = Direction.UpDown; // assign direnction to updown
         }
         
         if ((SwinGame.KeyTyped(KeyCode.LeftKey) || SwinGame.KeyTyped(KeyCode.RightKey))) {
-            _currentDirection = Direction.LeftRight;
+            _currentDirection = Direction.LeftRight; // assign direction to leftright
         }
         
         if (SwinGame.KeyTyped(KeyCode.RKey)) {
-            GameController.HumanPlayer.RandomizeDeployment();
+            GameController.HumanPlayer.RandomizeDeployment(); // randomize ship deployment
         }
         
-        if (SwinGame.MouseClicked(MouseButton.LeftButton)) {
+        if (SwinGame.MouseClicked(MouseButton.LeftButton)) { // selecting ship for deployment
             ShipName selected;
-            selected = DeploymentController.GetShipMouseIsOver();
+            selected = DeploymentController.GetShipMouseIsOver(); 	
             if ((selected != ShipName.None)) {
                 _selectedShip = selected;
             }
             else {
-                DeploymentController.DoDeployClick();
+                DeploymentController.DoDeployClick(); // deploy ship
             }
             
             // If play button is clicked end deployment
@@ -72,7 +72,7 @@ static class DeploymentController {
                 // If Up button clicked change direction
             }
             else if (UtilityFunctions.IsMouseInRectangle(UP_DOWN_BUTTON_LEFT, TOP_BUTTONS_TOP, DIR_BUTTONS_WIDTH, TOP_BUTTONS_HEIGHT)) {
-                _currentDirection = Direction.LeftRight;
+                _currentDirection = Direction.UpDown;
                 // BUG - button not consistently changing direction
             }
             else if (UtilityFunctions.IsMouseInRectangle(LEFT_RIGHT_BUTTON_LEFT, TOP_BUTTONS_TOP, DIR_BUTTONS_WIDTH, TOP_BUTTONS_HEIGHT)) {
@@ -141,7 +141,7 @@ static class DeploymentController {
         // DrawShips
         foreach (ShipName sn in Enum.GetValues(typeof(ShipName))) {
             int i = 0;
-            i = (int)sn - 1;
+            i = ((int)sn) - 1;
             if ((i >= 0)) {
                 if ((sn == _selectedShip)) {
                     SwinGame.DrawBitmap(GameResources.GameImage("SelectedShip"), SHIPS_LEFT, (SHIPS_TOP + (i * SHIPS_HEIGHT)));
@@ -149,9 +149,9 @@ static class DeploymentController {
                     // Else
                     //     SwinGame.FillRectangle(Color.Gray, SHIPS_LEFT, SHIPS_TOP + i * SHIPS_HEIGHT, SHIPS_WIDTH, SHIPS_HEIGHT)
                 }
-                
+
                 // SwinGame.DrawRectangle(Color.Black, SHIPS_LEFT, SHIPS_TOP + i * SHIPS_HEIGHT, SHIPS_WIDTH, SHIPS_HEIGHT)
-                // SwinGame.DrawText(sn.ToString(), Color.Black, GameFont("Courier"), SHIPS_LEFT + TEXT_OFFSET, SHIPS_TOP + i * SHIPS_HEIGHT)
+                SwinGame.DrawText(sn.ToString(), Color.White, GameResources.GameFont("Courier"), SHIPS_LEFT + TEXT_OFFSET, SHIPS_TOP + i * SHIPS_HEIGHT);
             }
             
         }
@@ -171,10 +171,10 @@ static class DeploymentController {
     // </summary>
     // <returns>The ship selected or none</returns>
     private static ShipName GetShipMouseIsOver() {
-        foreach (ShipName sn in Enum.GetValues(typeof(ShipName))) {
+        foreach (ShipName sn in Enum.GetValues(typeof(ShipName))) { // Mouse must be hovering the ship
             int i;
             i = (int)sn - 1;
-            if (UtilityFunctions.IsMouseInRectangle(SHIPS_LEFT, (SHIPS_TOP + (i * SHIPS_HEIGHT)), SHIPS_WIDTH, SHIPS_HEIGHT)) {
+            if (UtilityFunctions.IsMouseInRectangle(SHIPS_LEFT, (SHIPS_TOP + (i * SHIPS_HEIGHT)), SHIPS_WIDTH, SHIPS_HEIGHT)) { // check if mouse in rectangle.
                 return sn;
             }
             

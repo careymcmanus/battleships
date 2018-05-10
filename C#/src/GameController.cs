@@ -78,7 +78,7 @@ public class GameController {
                 break;
         }
         _human = new Player(_theGame);
-        // AddHandler _human.PlayerGrid.Changed, AddressOf GridChanged
+         _human.PlayerGrid.Changed += GridChanged;
         _ai.PlayerGrid.Changed += GridChanged;
         _theGame.AttackCompleted += AttackCompleted;
 
@@ -143,19 +143,19 @@ public class GameController {
     {
         bool isHuman = false;
 
-        isHuman = object.ReferenceEquals(_theGame.Player, HumanPlayer);
+        isHuman = object.ReferenceEquals(_theGame.Player, HumanPlayer); 
         
-        if (isHuman) {
-            UtilityFunctions.Message = ("You " + result.ToString());
+        if (isHuman) { // check if the message is for ai or the user, prints beginning of message.
+            UtilityFunctions.Message = ("You " + result.ToString()); 
         }
         else {
             UtilityFunctions.Message = ("The AI " + result.ToString());
         }
         
-        switch (result.Value) {
+        switch (result.Value) { // state of the result of the attack ( win or lose, ship is destroyed), and plays audio for that particular state
             case ResultOfAttack.Destroyed:
                 PlayHitSequence(result.Row, result.Column, isHuman);
-                Audio.PlaySoundEffect(GameResources.GameSound("Sink"));
+                Audio.PlaySoundEffect(GameResources.GameSound("Sink")); 
                 break;
             case ResultOfAttack.GameOver:
                 PlayHitSequence(result.Row, result.Column, isHuman);
@@ -165,7 +165,7 @@ public class GameController {
                     SwinGame.RefreshScreen();
                 }
                 
-                if (HumanPlayer.IsDestroyed) {
+                if (HumanPlayer.IsDestroyed) { // check if human destroyed and play audio
                     Audio.PlaySoundEffect(GameResources.GameSound("Lose"));
                 }
                 else {
@@ -173,7 +173,7 @@ public class GameController {
                 }
                 
                 break;
-            case ResultOfAttack.Hit:
+            case ResultOfAttack.Hit: //  check if attack hits
                 PlayHitSequence(result.Row, result.Column, isHuman);
                 break;
             case ResultOfAttack.Miss:
@@ -194,7 +194,7 @@ public class GameController {
     // state.
     // </remarks>
     public static void EndDeployment() {
-        // deploy the players
+        // deploy the players and ai
         _theGame.AddDeployedPlayer(_human);
         _theGame.AddDeployedPlayer(_ai);
         GameController.SwitchState(GameState.Discovering);
@@ -259,7 +259,7 @@ public class GameController {
     public static void HandleUserInput() {
         // Read incoming input events
         SwinGame.ProcessEvents();
-        switch (CurrentState) {
+        switch (CurrentState) { // read state
             case GameState.ViewingMainMenu:
                 MenuController.HandleMainMenuInput();
                 break;
@@ -285,7 +285,7 @@ public class GameController {
                 HowToController.HandleHowToInput();
                 break;
         }
-        UtilityFunctions.UpdateAnimations();
+        UtilityFunctions.UpdateAnimations(); // animate the state
     }
     
     // <summary>
@@ -324,7 +324,7 @@ public class GameController {
             
         }
         UtilityFunctions.DrawAnimations();
-        SwinGame.RefreshScreen();
+        SwinGame.RefreshScreen(60); 
     }
     
     // <summary>

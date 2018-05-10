@@ -29,7 +29,7 @@ class MenuController {
 		new string[] {
             "RETURN",
             "SURRENDER",
-            "RESTART",
+            "REMATCH",
             "QUIT"
         },
 		// Setup Menu
@@ -82,7 +82,8 @@ class MenuController {
     
     private const int GAME_MENU_RETURN_BUTTON = 0;
     private const int GAME_MENU_SURRENDER_BUTTON = 1;
-    private const int GAME_MENU_QUIT_BUTTON = 2;
+    private const int GAME_MENU_REMATCH_BUTTON = 2;
+    private const int GAME_MENU_QUIT_BUTTON = 3;
     
     private static Color MENU_COLOR = SwinGame.RGBAColor(2, 167, 252, 255);
     private static Color HIGHLIGHT_COLOR = SwinGame.RGBAColor(1, 57, 86, 255);
@@ -207,7 +208,7 @@ class MenuController {
         Rectangle toDraw = new Rectangle();
         btnTop = MENU_TOP - (MENU_GAP + BUTTON_HEIGHT) * level;
         int i;
-        for (i = 0; i <= _menuStructure[menu].Length - 1; i++) {
+        for (i = 0; i <= _menuStructure[menu].Length - 1; i++) { // for every length, it will draw thge button
             int btnLeft;
             btnLeft = (MENU_LEFT + (BUTTON_SEP * (i + xOffset)));
             toDraw.X = (btnLeft + TEXT_OFFSET);
@@ -215,8 +216,8 @@ class MenuController {
             toDraw.Width = BUTTON_WIDTH;
             toDraw.Height = BUTTON_HEIGHT;
 
-            SwinGame.DrawText(_menuStructure[menu][i].ToString(), MENU_COLOR, Color.Black, GameResources.GameFont("Menu"), FontAlignment.AlignCenter, toDraw);
-            if ((SwinGame.MouseDown(MouseButton.LeftButton) && MenuController.IsMouseOverMenu(i, level, xOffset))) {
+            SwinGame.DrawText(_menuStructure[menu][i].ToString(), MENU_COLOR, Color.Black, GameResources.GameFont("Menu"), FontAlignment.AlignCenter, toDraw); // draw the text
+            if ((SwinGame.MouseDown(MouseButton.LeftButton) && MenuController.IsMouseOverMenu(i, level, xOffset))) { // drawing the button
                 SwinGame.DrawRectangle(HIGHLIGHT_COLOR, btnLeft, btnTop, BUTTON_WIDTH, BUTTON_HEIGHT);
             }
             
@@ -271,19 +272,19 @@ class MenuController {
     // '' <param name="button">the button pressed</param>
     private static void PerformMainMenuAction(int button) {
         switch (button) {
-            case MAIN_MENU_PLAY_BUTTON:
+            case MAIN_MENU_PLAY_BUTTON: // check if main button pressed
                 GameController.StartGame();
                 break;
-            case MAIN_MENU_HOWTO_BUTTON:
+            case MAIN_MENU_HOWTO_BUTTON: // check if how to button pressed
                 GameController.AddNewState(GameState.ViewingHowTo);
                 break;
-            case MAIN_MENU_SETUP_BUTTON:
+            case MAIN_MENU_SETUP_BUTTON: // checked if setup button pressed
                 GameController.AddNewState(GameState.AlteringSettings);
                 break;
-            case MAIN_MENU_TOP_SCORES_BUTTON:
+            case MAIN_MENU_TOP_SCORES_BUTTON: // check if scores button pressed
                 GameController.AddNewState(GameState.ViewingHighScores);
                 break;
-            case MAIN_MENU_QUIT_BUTTON:
+            case MAIN_MENU_QUIT_BUTTON: // checked if quit button pressed
                 GameController.EndCurrentState();
                 break;
         }
@@ -295,13 +296,13 @@ class MenuController {
     // '' <param name="button">the button pressed</param>
     private static void PerformSetupMenuAction(int button) {
         switch (button) {
-            case SETUP_MENU_EASY_BUTTON:
+            case SETUP_MENU_EASY_BUTTON: // set diff in easy
                 GameController.SetDifficulty(AIOption.Easy);
                 break;
-            case SETUP_MENU_MEDIUM_BUTTON:
+            case SETUP_MENU_MEDIUM_BUTTON: // set diff in medium
                 GameController.SetDifficulty(AIOption.Medium);
                 break;
-            case SETUP_MENU_HARD_BUTTON:
+            case SETUP_MENU_HARD_BUTTON: // set diff in hard
                 GameController.SetDifficulty(AIOption.Hard);
                 break;
         }
@@ -317,16 +318,23 @@ class MenuController {
     // '' <param name="button">the button pressed</param>
     private static void PerformGameMenuAction(int button) {
         switch (button) {
-            case GAME_MENU_RETURN_BUTTON:
+            case GAME_MENU_RETURN_BUTTON: // return
                 GameController.EndCurrentState();
                 break;
-            case GAME_MENU_SURRENDER_BUTTON:
+            case GAME_MENU_SURRENDER_BUTTON: // surrender
                 GameController.EndCurrentState();
                 // end game menu
                 GameController.EndCurrentState();
                 // end game
                 break;
-            case GAME_MENU_QUIT_BUTTON:
+            case GAME_MENU_REMATCH_BUTTON:
+                GameController.EndCurrentState();
+                // end game menu
+                GameController.EndCurrentState();
+                // end game
+                GameController.StartGame();
+                break;
+            case GAME_MENU_QUIT_BUTTON: // quit
                 GameController.AddNewState(GameState.Quitting);
                 break;
         }
