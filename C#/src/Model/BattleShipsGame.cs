@@ -16,7 +16,7 @@ public class BattleShipsGame {
     public delegate void AttackCompletedHandler(object sender, AttackResult result);
     
     public event AttackCompletedHandler AttackCompleted;
-    private Player[] _players = new Player[3];
+    private Player[] _players = new Player[2];
     private int _playerIndex = 0;
     
     // '' <summary>
@@ -31,13 +31,14 @@ public class BattleShipsGame {
         }
     }
     
+    //add deployed ship and player
     public void AddDeployedPlayer(Player p) {
         if (_players[0] == null) {
             _players[0] = p;
         }
         else if (_players[1] == null) {
             _players[1] = p;
-            this.CompleteDeployment();
+            CompleteDeployment();
         }
         else {
             throw new ApplicationException("You cannot add another player, the game already has two players.");

@@ -12,7 +12,7 @@ using SwinGameSDK;
 // '' </remarks>
 class HighScoreController {
     
-    private const int NAME_WIDTH = 10;
+    private const int NAME_WIDTH = 3;
     
     private const int SCORES_LEFT = 490;
     
@@ -20,7 +20,8 @@ class HighScoreController {
     // '' The score structure is used to keep the name and
     // '' score of the top players together.
     // '' </summary>
-    private struct Score {
+    private struct Score :IComparable
+    {
         
         public string Name;
         
@@ -97,7 +98,7 @@ class HighScoreController {
         const int SCORES_HEADING = 40;
         const int SCORES_TOP = 80;
         const int SCORE_GAP = 30;
-        if ((_Scores.Count == 0)) {
+        if ((_Scores.Count == 0)) { 
             HighScoreController.LoadScores();
         }
         
