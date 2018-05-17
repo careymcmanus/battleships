@@ -20,7 +20,7 @@ class HighScoreController
     // '' The score structure is used to keep the name and
     // '' score of the top players together.
     // '' </summary>
-    private struct Score
+    public struct Score : IComparable
     {
 
         public string Name;

@@ -138,7 +138,7 @@ public class Player : IEnumerable<Ship>
             }
             else
             {
-                return (Hits * 12) - Shots - (PlayerGrid.ShipsKilled * 20);
+                return (Hits * 15) - Shots - (PlayerGrid.ShipsKilled * 20);
             }
         }
     }
