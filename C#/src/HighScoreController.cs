@@ -9,20 +9,33 @@ using SwinGameSDK;
 // '' <remarks>
 // '' Data is saved to a file.
 // '' </remarks>
+<<<<<<< HEAD
 class HighScoreController
 {
 
     private const int NAME_WIDTH = 3;
 
+=======
+class HighScoreController {
+    
+    private const int NAME_WIDTH = 3;
+    
+>>>>>>> fix-highscore-bug
     private const int SCORES_LEFT = 490;
 
     // '' <summary>
     // '' The score structure is used to keep the name and
     // '' score of the top players together.
     // '' </summary>
+<<<<<<< HEAD
     public struct Score : IComparable
     {
 
+=======
+    private struct Score :IComparable
+    {
+        
+>>>>>>> fix-highscore-bug
         public string Name;
 
         public int Value;
@@ -107,8 +120,12 @@ class HighScoreController
         const int SCORES_HEADING = 40;
         const int SCORES_TOP = 80;
         const int SCORE_GAP = 30;
+<<<<<<< HEAD
         if ((_Scores.Count == 0))
         {
+=======
+        if ((_Scores.Count == 0)) { 
+>>>>>>> fix-highscore-bug
             HighScoreController.LoadScores();
         }
 

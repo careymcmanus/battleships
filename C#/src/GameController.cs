@@ -78,7 +78,11 @@ public class GameController {
                 break;
         }
         _human = new Player(_theGame);
+<<<<<<< HEAD
          _human.PlayerGrid.Changed += GridChanged;
+=======
+        _human.PlayerGrid.Changed += GridChanged;
+>>>>>>> fix-highscore-bug
         _ai.PlayerGrid.Changed += GridChanged;
         _theGame.AttackCompleted += AttackCompleted;
 

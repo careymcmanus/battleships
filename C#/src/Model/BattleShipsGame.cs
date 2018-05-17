@@ -30,7 +30,12 @@ public class BattleShipsGame {
             return _players[_playerIndex];
         }
     }
+<<<<<<< HEAD
     // add deployed ship AI and Player
+=======
+    
+    //add deployed ship and player
+>>>>>>> fix-highscore-bug
     public void AddDeployedPlayer(Player p) {
         if (_players[0] == null) {
             _players[0] = p;
